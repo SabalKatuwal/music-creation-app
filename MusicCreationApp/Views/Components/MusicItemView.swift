@@ -22,11 +22,10 @@ struct MusicItemView: View {
             
             VStack(alignment: .leading, spacing: 5) {
                 Text(title)
-                    .font(.headline)
                 
                 Text(subtitle)
                     .font(.subheadline)
-                    .opacity(0.8)
+                    .opacity(0.7)
                     .lineLimit(1)
                     .overlay(
                         LinearGradient(
@@ -48,7 +47,7 @@ struct MusicItemView: View {
                 Spacer()
                 Image(systemName: "ellipsis")
                     .font(.headline)
-                    .opacity(0.8)
+                    .opacity(0.7)
             }
 
         }
