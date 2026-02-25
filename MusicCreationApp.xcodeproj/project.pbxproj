@@ -11,6 +11,10 @@
 		A6415DC42F4F148A00F59A62 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6415DC32F4F148A00F59A62 /* ContentView.swift */; };
 		A6415DC62F4F148C00F59A62 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A6415DC52F4F148C00F59A62 /* Assets.xcassets */; };
 		A6415DC92F4F148C00F59A62 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A6415DC82F4F148C00F59A62 /* Preview Assets.xcassets */; };
+		A6415DD02F4F1D8B00F59A62 /* MusicCreationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6415DCF2F4F1D8A00F59A62 /* MusicCreationView.swift */; };
+		A6415DD22F4F1DC700F59A62 /* OtherTabsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6415DD12F4F1DC700F59A62 /* OtherTabsView.swift */; };
+		A6415DD92F4F220F00F59A62 /* CustomCreationShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6415DD82F4F220F00F59A62 /* CustomCreationShape.swift */; };
+		A6415DDB2F4F22F100F59A62 /* CustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6415DDA2F4F22F100F59A62 /* CustomTabBar.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +23,10 @@
 		A6415DC32F4F148A00F59A62 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		A6415DC52F4F148C00F59A62 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A6415DC82F4F148C00F59A62 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		A6415DCF2F4F1D8A00F59A62 /* MusicCreationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicCreationView.swift; sourceTree = "<group>"; };
+		A6415DD12F4F1DC700F59A62 /* OtherTabsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherTabsView.swift; sourceTree = "<group>"; };
+		A6415DD82F4F220F00F59A62 /* CustomCreationShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCreationShape.swift; sourceTree = "<group>"; };
+		A6415DDA2F4F22F100F59A62 /* CustomTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBar.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,7 +60,7 @@
 			isa = PBXGroup;
 			children = (
 				A6415DC12F4F148A00F59A62 /* MusicCreationAppApp.swift */,
-				A6415DC32F4F148A00F59A62 /* ContentView.swift */,
+				A6415DD32F4F20BF00F59A62 /* Views */,
 				A6415DC52F4F148C00F59A62 /* Assets.xcassets */,
 				A6415DC72F4F148C00F59A62 /* Preview Content */,
 			);
@@ -65,6 +73,26 @@
 				A6415DC82F4F148C00F59A62 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		A6415DD32F4F20BF00F59A62 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				A6415DD52F4F210300F59A62 /* Components */,
+				A6415DC32F4F148A00F59A62 /* ContentView.swift */,
+				A6415DD12F4F1DC700F59A62 /* OtherTabsView.swift */,
+				A6415DCF2F4F1D8A00F59A62 /* MusicCreationView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		A6415DD52F4F210300F59A62 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				A6415DD82F4F220F00F59A62 /* CustomCreationShape.swift */,
+				A6415DDA2F4F22F100F59A62 /* CustomTabBar.swift */,
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -137,7 +165,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A6415DD02F4F1D8B00F59A62 /* MusicCreationView.swift in Sources */,
+				A6415DD22F4F1DC700F59A62 /* OtherTabsView.swift in Sources */,
+				A6415DD92F4F220F00F59A62 /* CustomCreationShape.swift in Sources */,
 				A6415DC42F4F148A00F59A62 /* ContentView.swift in Sources */,
+				A6415DDB2F4F22F100F59A62 /* CustomTabBar.swift in Sources */,
 				A6415DC22F4F148A00F59A62 /* MusicCreationAppApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
