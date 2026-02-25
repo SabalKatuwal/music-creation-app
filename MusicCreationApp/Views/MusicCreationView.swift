@@ -11,18 +11,18 @@ struct MusicCreationView: View {
     var body: some View {
 
         ScrollView {
-            VStack(spacing: 20) {
+            VStack(alignment: .leading, spacing: 12) {
+                MusicItemView(imageName: "VoicePic", title: "Language Training", subtitle: "Create a presentation that explains how large")
                 
-                ForEach(0..<20) { index in
-                    Text("Item \(index)")
-                        .foregroundColor(.white)
-                }
+                MusicItemView(imageName: "VoicePic1", title: "Bam Bam", subtitle: "Generate a script for a play abou the power")
                 
+                MusicItemView(imageName: "VoicePic2", title: "Enemy", subtitle: "Compose a poem about the meaning")
+                
+                MusicItemView(imageName: "VoicePic3", title: "Balenciaga", subtitle: "Generate a poem about a lost")
             }
-            .padding()
+            .padding(.horizontal)
         }
         .frame(maxWidth: .infinity)
-        .background(Color.gray)
     }
 }
 

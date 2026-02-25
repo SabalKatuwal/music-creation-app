@@ -16,6 +16,7 @@
 		A6415DD92F4F220F00F59A62 /* CustomCreationShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6415DD82F4F220F00F59A62 /* CustomCreationShape.swift */; };
 		A6415DDB2F4F22F100F59A62 /* CustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6415DDA2F4F22F100F59A62 /* CustomTabBar.swift */; };
 		A6415DDD2F4F40CF00F59A62 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6415DDC2F4F40CF00F59A62 /* HeaderView.swift */; };
+		A6415DDF2F4F502C00F59A62 /* MusicItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6415DDE2F4F502C00F59A62 /* MusicItemView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +30,7 @@
 		A6415DD82F4F220F00F59A62 /* CustomCreationShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCreationShape.swift; sourceTree = "<group>"; };
 		A6415DDA2F4F22F100F59A62 /* CustomTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBar.swift; sourceTree = "<group>"; };
 		A6415DDC2F4F40CF00F59A62 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
+		A6415DDE2F4F502C00F59A62 /* MusicItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicItemView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +96,7 @@
 				A6415DD82F4F220F00F59A62 /* CustomCreationShape.swift */,
 				A6415DDA2F4F22F100F59A62 /* CustomTabBar.swift */,
 				A6415DDC2F4F40CF00F59A62 /* HeaderView.swift */,
+				A6415DDE2F4F502C00F59A62 /* MusicItemView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -169,6 +172,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A6415DD02F4F1D8B00F59A62 /* MusicCreationView.swift in Sources */,
+				A6415DDF2F4F502C00F59A62 /* MusicItemView.swift in Sources */,
 				A6415DD22F4F1DC700F59A62 /* OtherTabsView.swift in Sources */,
 				A6415DD92F4F220F00F59A62 /* CustomCreationShape.swift in Sources */,
 				A6415DC42F4F148A00F59A62 /* ContentView.swift in Sources */,
