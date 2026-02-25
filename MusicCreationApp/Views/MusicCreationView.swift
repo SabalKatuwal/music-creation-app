@@ -9,7 +9,20 @@ import SwiftUI
 
 struct MusicCreationView: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+
+        ScrollView {
+            VStack(spacing: 20) {
+                
+                ForEach(0..<20) { index in
+                    Text("Item \(index)")
+                        .foregroundColor(.white)
+                }
+                
+            }
+            .padding()
+        }
+        .frame(maxWidth: .infinity)
+        .background(Color.gray)
     }
 }
 
