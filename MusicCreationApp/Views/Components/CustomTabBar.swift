@@ -21,29 +21,29 @@ struct CustomTabBar: View {
             
             HStack {
                 tabButton(index: 0) {
-                    CustomIconRepresentable(isSelected: selectedTab == 0)
-                        .frame(width: 22, height: 22)
+                    TwoCreationIconView(selectedTab: $selectedTab)
+                        .frame(width: 24, height: 24)
                 }
                 
                 tabButton(index: 1) {
                     Image(systemName: "magnifyingglass")
                         .resizable()
                         .scaledToFit()
-                        .frame(width: 22, height: 22)
+                        .frame(width: 24, height: 24)
                 }
                 
                 tabButton(index: 2) {
                     Image(systemName: "heart")
                         .resizable()
                         .scaledToFit()
-                        .frame(width: 22, height: 22)
+                        .frame(width: 24, height: 24)
                 }
                 
                 tabButton(index: 3) {
                     Image(systemName: "person")
                         .resizable()
                         .scaledToFit()
-                        .frame(width: 22, height: 22)
+                        .frame(width: 24, height: 24)
                 }
             }
             .frame(height: 60)

@@ -5,18 +5,40 @@
 //  Created by Sabal on 2/25/26.
 //
 
-import Foundation
 import UIKit
 import SwiftUI
+
+struct TwoCreationIconView: View {
+    @Binding var selectedTab: Int
+    var body: some View {
+        ZStack {
+            CustomIconRepresentable(isSelected: selectedTab == 0)
+                .frame(width: 18, height: 18)
+            
+            CustomIconRepresentable(isSelected: selectedTab == 0)
+                .frame(width: 12, height: 12)
+                .offset(x: -10, y: 10)
+        }
+    }
+}
+
+struct CustomIconRepresentable: UIViewRepresentable {
+    var isSelected: Bool
+    
+    func makeUIView(context: Context) -> CustomCreationShape {
+        CustomCreationShape()
+    }
+    
+    func updateUIView(_ uiView: CustomCreationShape, context: Context) {
+        uiView.isSelected = isSelected
+    }
+}
+
 
 class CustomCreationShape: UIView {
     
     var isSelected: Bool = false {
         didSet { setNeedsDisplay() }
-    }
-    
-    override var intrinsicContentSize: CGSize {
-        CGSize(width: 28, height: 28)
     }
     
     override init(frame: CGRect) {
@@ -31,30 +53,49 @@ class CustomCreationShape: UIView {
     
     override func draw(_ rect: CGRect) {
         let path = UIBezierPath()
-
-        // just for now we will replce, I think we shoudl add curves
-        path.move(to: CGPoint(x: rect.midX, y: rect.minY))
-        path.addLine(to: CGPoint(x: rect.maxX, y: rect.midY))
-        path.addLine(to: CGPoint(x: rect.midX, y: rect.maxY))
-        path.addLine(to: CGPoint(x: rect.minX, y: rect.midY))
+        
+        let top = CGPoint(x: rect.midX, y: rect.minY)
+        let right = CGPoint(x: rect.maxX, y: rect.midY)
+        let bottom = CGPoint(x: rect.midX, y: rect.maxY)
+        let left = CGPoint(x: rect.minX, y: rect.midY)
+        
+        let insetAmount: CGFloat = rect.width * 0.05
+        
+        path.move(to: top)
+        
+        path.addQuadCurve(
+            to: right,
+            controlPoint: CGPoint(x: rect.midX + insetAmount, y: rect.midY - insetAmount)
+        )
+        
+        path.addQuadCurve(to: bottom, controlPoint: CGPoint(x: rect.midX + insetAmount, y: rect.midY + insetAmount)
+        )
+        
+        path.addQuadCurve(
+            to: left,
+            controlPoint: CGPoint(x: rect.midX - insetAmount, y: rect.midY + insetAmount)
+        )
+        
+        path.addQuadCurve(
+            to: top,
+            controlPoint: CGPoint(x: rect.midX - insetAmount, y: rect.midY - insetAmount)
+        )
+        
         path.close()
         
-        let color = isSelected ? UIColor.white : UIColor(white: 1, alpha: 0.4)
-        color.setFill()
-        path.fill()
+        let strokeColor = isSelected
+            ? UIColor.white
+            : UIColor(white: 1, alpha: 0.4)
+        
+        strokeColor.setStroke()
+        
+        path.lineWidth = 2.0
+        path.lineJoinStyle = .round
+        path.lineCapStyle = .round
+        
+        path.stroke()
     }
 }
 
 
-struct CustomIconRepresentable: UIViewRepresentable {
-    
-    var isSelected: Bool
-    
-    func makeUIView(context: Context) -> CustomCreationShape {
-        CustomCreationShape()
-    }
-    
-    func updateUIView(_ uiView: CustomCreationShape, context: Context) {
-        uiView.isSelected = isSelected
-    }
-}
+
