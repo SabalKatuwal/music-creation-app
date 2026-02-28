@@ -8,19 +8,24 @@
 import SwiftUI
 
 struct MusicCreationView: View {
+    
+    @EnvironmentObject private var playerManager: PlayerManager
+
     var body: some View {
 
         ScrollView {
             VStack(alignment: .leading, spacing: 12) {
-                MusicItemView(imageName: "VoicePic", title: "Language Training", subtitle: "Create a presentation that explains how large")
-                
-                MusicItemView(imageName: "VoicePic1", title: "Bam Bam", subtitle: "Generate a script for a play abou the power")
-                
-                MusicItemView(imageName: "VoicePic2", title: "Enemy", subtitle: "Compose a poem about the meaning")
-                
-                MusicItemView(imageName: "VoicePic3", title: "Balenciaga", subtitle: "Generate a poem about a lost")
+                ForEach(MusicTrack.sampleTracks) { track in
+                    MusicItemView(track: track) {
+                        withAnimation(.spring(response: 0.5, dampingFraction: 0.78)) {
+                            playerManager.play(track)
+                        }
+                    }
+                }
             }
             .padding(.horizontal)
+            // for scrolling till bottom part
+            .padding(.bottom, playerManager.isPlayerVisible ? 120 : 0)
         }
         .frame(maxWidth: .infinity)
     }

@@ -10,6 +10,8 @@ import UIKit
 
 struct ContentView: View {
     @State private var selectedTab = 0
+    @StateObject private var playerManager = PlayerManager()
+    @State private var tabBarHeight: CGFloat = 0 // to calculate height of tabbar and propagate above
 
     var body: some View {
         
@@ -19,28 +21,65 @@ struct ContentView: View {
                 
                 // MARK: - Header
                 HeaderView()
-                
-                // MARK: - Content
-                Group {
-                    switch selectedTab {
-                    case 0: MusicCreationView()
-                    case 1: OtherTabsView(screenType: .search)
-                    case 2: OtherTabsView(screenType: .library)
-                    case 3: OtherTabsView(screenType: .profile)
-                    default: MusicCreationView()
-                    }
-                }
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                tabContent
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
             }
-            .ignoresSafeArea(edges: .bottom)
+            .padding(.bottom, tabBarHeight)
             
             // MARK: - Tab Bar
             CustomTabBar(selectedTab: $selectedTab)
+                .background(
+                    GeometryReader { geo in
+                        Color.clear
+                            .preference(key: TabBarHeightKey.self, value: geo.size.height)
+                    }
+                )
+                .onPreferenceChange(TabBarHeightKey.self) { height in
+                    tabBarHeight = height
+                }
         }
+        .overlay(alignment: .bottom) {
+            if playerManager.isPlayerVisible {
+                FloatingPlayerView()
+                    .padding(.bottom, tabBarHeight + 10)
+                    .transition(
+                        .asymmetric(
+                            insertion: .move(edge: .bottom).combined(with: .opacity),
+                            removal: .move(edge: .bottom).combined(with: .opacity)
+                        )
+                    )
+            }
+        }
+        .environmentObject(playerManager)
+        .animation(.spring(response: 0.5, dampingFraction: 0.78), value: playerManager.isPlayerVisible)
         .preferredColorScheme(.dark)
+    }
+    
+    // MARK: - Tab Content
+    @ViewBuilder
+    private var tabContent: some View {
+        switch selectedTab {
+        case 0:  MusicCreationView()
+        case 1:  OtherTabsView(screenType: .search)
+        case 2:  OtherTabsView(screenType: .library)
+        case 3:  OtherTabsView(screenType: .profile)
+        default: MusicCreationView()
+        }
+    }
+}
+
+
+/// Preference key that propagates the measured height of `CustomTabBar`
+/// up the view tree so `ContentView` can offset `FloatingPlayerView` correctly.
+struct TabBarHeightKey: PreferenceKey {
+    static let defaultValue: CGFloat = 0
+
+    static func reduce(value: inout CGFloat, nextValue: () -> CGFloat) {
+        value = max(value, nextValue())
     }
 }
 
 #Preview {
     ContentView()
 }
+

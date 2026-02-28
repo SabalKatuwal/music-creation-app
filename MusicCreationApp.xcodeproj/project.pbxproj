@@ -17,6 +17,10 @@
 		A6415DDB2F4F22F100F59A62 /* CustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6415DDA2F4F22F100F59A62 /* CustomTabBar.swift */; };
 		A6415DDD2F4F40CF00F59A62 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6415DDC2F4F40CF00F59A62 /* HeaderView.swift */; };
 		A6415DDF2F4F502C00F59A62 /* MusicItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6415DDE2F4F502C00F59A62 /* MusicItemView.swift */; };
+		A6415DE22F50B1EE00F59A62 /* PlayerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6415DE12F50B1EE00F59A62 /* PlayerManager.swift */; };
+		A6415DE52F50B37300F59A62 /* MusicTrack.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6415DE42F50B37300F59A62 /* MusicTrack.swift */; };
+		A6415DE72F50BF1C00F59A62 /* FloatingPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6415DE62F50BF1C00F59A62 /* FloatingPlayerView.swift */; };
+		A6415DE92F50BF8300F59A62 /* LiquidGlassBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6415DE82F50BF8300F59A62 /* LiquidGlassBackground.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +35,10 @@
 		A6415DDA2F4F22F100F59A62 /* CustomTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBar.swift; sourceTree = "<group>"; };
 		A6415DDC2F4F40CF00F59A62 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		A6415DDE2F4F502C00F59A62 /* MusicItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicItemView.swift; sourceTree = "<group>"; };
+		A6415DE12F50B1EE00F59A62 /* PlayerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerManager.swift; sourceTree = "<group>"; };
+		A6415DE42F50B37300F59A62 /* MusicTrack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicTrack.swift; sourceTree = "<group>"; };
+		A6415DE62F50BF1C00F59A62 /* FloatingPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingPlayerView.swift; sourceTree = "<group>"; };
+		A6415DE82F50BF8300F59A62 /* LiquidGlassBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiquidGlassBackground.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,7 +71,9 @@
 		A6415DC02F4F148A00F59A62 /* MusicCreationApp */ = {
 			isa = PBXGroup;
 			children = (
+				A6415DE32F50B35E00F59A62 /* Models */,
 				A6415DC12F4F148A00F59A62 /* MusicCreationAppApp.swift */,
+				A6415DE02F50B1A800F59A62 /* Managers */,
 				A6415DD32F4F20BF00F59A62 /* Views */,
 				A6415DC52F4F148C00F59A62 /* Assets.xcassets */,
 				A6415DC72F4F148C00F59A62 /* Preview Content */,
@@ -97,8 +107,26 @@
 				A6415DDA2F4F22F100F59A62 /* CustomTabBar.swift */,
 				A6415DDC2F4F40CF00F59A62 /* HeaderView.swift */,
 				A6415DDE2F4F502C00F59A62 /* MusicItemView.swift */,
+				A6415DE62F50BF1C00F59A62 /* FloatingPlayerView.swift */,
+				A6415DE82F50BF8300F59A62 /* LiquidGlassBackground.swift */,
 			);
 			path = Components;
+			sourceTree = "<group>";
+		};
+		A6415DE02F50B1A800F59A62 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				A6415DE12F50B1EE00F59A62 /* PlayerManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		A6415DE32F50B35E00F59A62 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				A6415DE42F50B37300F59A62 /* MusicTrack.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -175,7 +203,11 @@
 				A6415DDF2F4F502C00F59A62 /* MusicItemView.swift in Sources */,
 				A6415DD22F4F1DC700F59A62 /* OtherTabsView.swift in Sources */,
 				A6415DD92F4F220F00F59A62 /* CustomCreationShape.swift in Sources */,
+				A6415DE92F50BF8300F59A62 /* LiquidGlassBackground.swift in Sources */,
 				A6415DC42F4F148A00F59A62 /* ContentView.swift in Sources */,
+				A6415DE52F50B37300F59A62 /* MusicTrack.swift in Sources */,
+				A6415DE22F50B1EE00F59A62 /* PlayerManager.swift in Sources */,
+				A6415DE72F50BF1C00F59A62 /* FloatingPlayerView.swift in Sources */,
 				A6415DDB2F4F22F100F59A62 /* CustomTabBar.swift in Sources */,
 				A6415DC22F4F148A00F59A62 /* MusicCreationAppApp.swift in Sources */,
 				A6415DDD2F4F40CF00F59A62 /* HeaderView.swift in Sources */,
