@@ -12,7 +12,8 @@ struct ContentView: View {
     @State private var selectedTab = 0
     @StateObject private var playerManager = PlayerManager()
     @State private var tabBarHeight: CGFloat = 0 // to calculate height of tabbar and propagate above
-
+    @State var floatingDragOffset: CGFloat = 0
+    
     var body: some View {
         
         ZStack(alignment: .bottom) {
@@ -40,7 +41,7 @@ struct ContentView: View {
         }
         .overlay(alignment: .bottom) {
             if playerManager.isPlayerVisible {
-                FloatingPlayerView()
+                FloatingPlayerView(dragOffset: $floatingDragOffset)
                     .padding(.bottom, tabBarHeight + 10)
                     .transition(
                         .asymmetric(
@@ -59,11 +60,11 @@ struct ContentView: View {
     @ViewBuilder
     private var tabContent: some View {
         switch selectedTab {
-        case 0:  MusicCreationView()
+        case 0: MusicCreationView(floatingDragOffset: $floatingDragOffset, tabBarHeight: tabBarHeight)
         case 1:  OtherTabsView(screenType: .search)
         case 2:  OtherTabsView(screenType: .library)
         case 3:  OtherTabsView(screenType: .profile)
-        default: MusicCreationView()
+        default: MusicCreationView(floatingDragOffset: $floatingDragOffset, tabBarHeight: tabBarHeight)
         }
     }
 }

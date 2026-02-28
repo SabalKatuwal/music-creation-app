@@ -8,7 +8,10 @@
 import SwiftUI
 
 struct MusicCreationView: View {
+    @Binding var floatingDragOffset: CGFloat
+    let tabBarHeight: CGFloat
     
+    @State private var floatingPlayerHeight: CGFloat = 120
     @EnvironmentObject private var playerManager: PlayerManager
 
     var body: some View {
@@ -28,9 +31,30 @@ struct MusicCreationView: View {
             .padding(.bottom, playerManager.isPlayerVisible ? 120 : 0)
         }
         .frame(maxWidth: .infinity)
+        .overlay {
+            VStack {
+                Spacer()
+                
+                HStack(spacing: 4) {
+                    TwoCreationIconView(selectedTab: .constant(1), withColor: true)
+                    Text("Create")
+                        .font(.headline)
+                }
+                .padding(.vertical, 8)
+                .padding(.horizontal, 16)
+                .background(
+                    RoundedRectangle(cornerRadius: 16)
+                        .fill(Color(.systemGray5))
+                )
+            }
+            .padding(.bottom, 12 + (playerManager.isPlayerVisible ? floatingPlayerHeight : 0))
+            .offset(
+                y: min(floatingDragOffset, floatingPlayerHeight)
+            )
+        }
     }
 }
 
-#Preview {
-    MusicCreationView()
-}
+//#Preview {
+//    MusicCreationView(floatingDragOffset: .constant(10), tabBarHeight: 120)
+//}

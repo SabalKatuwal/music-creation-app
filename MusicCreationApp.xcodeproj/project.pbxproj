@@ -92,6 +92,7 @@
 		A6415DD32F4F20BF00F59A62 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				A6415DEA2F5348E600F59A62 /* Extensions */,
 				A6415DD52F4F210300F59A62 /* Components */,
 				A6415DC32F4F148A00F59A62 /* ContentView.swift */,
 				A6415DD12F4F1DC700F59A62 /* OtherTabsView.swift */,
@@ -127,6 +128,13 @@
 				A6415DE42F50B37300F59A62 /* MusicTrack.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		A6415DEA2F5348E600F59A62 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

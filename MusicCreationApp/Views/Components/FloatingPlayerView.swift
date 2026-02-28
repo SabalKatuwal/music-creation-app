@@ -13,7 +13,8 @@ struct FloatingPlayerView: View {
 
     // MARK: Private State
 
-    @State private var dragOffset: CGFloat = 0
+    @Binding var dragOffset: CGFloat
+
     @GestureState private var isDragging: Bool = false
 
     // MARK: Constants
@@ -51,7 +52,7 @@ struct FloatingPlayerView: View {
         .shadow(color: .black.opacity(0.45 - dismissProgress * 0.3), radius: 30, y: 10)
         .padding(.horizontal, 16)
         .offset(y: dragOffset)
-        .opacity(1.0 - dismissProgress * 0.6)
+        .opacity(1.0 - dismissProgress * 0.3)
         .scaleEffect(1.0 - dismissProgress * 0.03)
         .gesture(dismissGesture)
     }
@@ -99,7 +100,7 @@ struct FloatingPlayerView: View {
         VStack(alignment: .leading) {
             Text(track.title)
                 .font(.headline)
-                .foregroundColor(.white.opacity(1.0 - dismissProgress * 0.6))
+                .foregroundColor(.white.opacity(1.0 - dismissProgress * 0.2))
                 .lineLimit(1)
         }
     }
@@ -110,14 +111,14 @@ struct FloatingPlayerView: View {
             Button(action: playerManager.skipBackward) {
                 Image(systemName: "backward.fill")
                     .font(.headline)
-                    .foregroundColor(.white.opacity(0.8 - dismissProgress * 0.6))
+                    .foregroundColor(.white.opacity(0.8 - dismissProgress * 0.2))
             }
 
             Button(action: { playerManager.isPlaying.toggle() }) {
                 ZStack {
                     Image(systemName: playerManager.isPlaying ? "pause.fill" : "play.fill")
                         .font(.headline)
-                        .foregroundColor(.white.opacity(0.8 - dismissProgress * 0.6))
+                        .foregroundColor(.white.opacity(0.8 - dismissProgress * 0.2))
                         .offset(x: playerManager.isPlaying ? 0 : 1)
                 }
             }
@@ -125,7 +126,7 @@ struct FloatingPlayerView: View {
             Button(action: playerManager.skipForward) {
                 Image(systemName: "forward.fill")
                     .font(.system(size: 18))
-                    .foregroundColor(.white.opacity(0.8 - dismissProgress * 0.6))
+                    .foregroundColor(.white.opacity(0.8 - dismissProgress * 0.2))
             }
         }
     }
