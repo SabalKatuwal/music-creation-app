@@ -1,18 +1,6 @@
 import SwiftUI
 
-// ═══════════════════════════════════════════════════════════════════
 // MARK: - MusicGenerationFlowView
-//
-// The bottom pill that lives in `MusicCreationView`.
-// Manages three visual states:
-//   .idle     → tappable "Create" pill
-//   .prompt   → text input field (morphs from pill)
-//   .generating → shows animated stage text, non-interactive
-//
-// On submission it calls `generationManager.generate(prompt)` and
-// returns to idle — the animated track item in the list handles
-// the rest of the generation UX.
-// ═══════════════════════════════════════════════════════════════════
 
 struct MusicGenerationFlowView: View {
 
@@ -94,20 +82,15 @@ struct MusicGenerationFlowView: View {
 
     private var idlePill: some View {
         HStack(spacing: 7) {
-            Image(systemName: "waveform")
-                .font(.system(size: 15, weight: .semibold))
-                .foregroundStyle(
-                    LinearGradient(
-                        colors: [Color(red: 0.62, green: 0.38, blue: 1.0), Color(red: 1.0, green: 0.33, blue: 0.68)],
-                        startPoint: .topLeading, endPoint: .bottomTrailing
-                    )
-                )
+            
+            TwoCreationIconView(selectedTab: .constant(10), withColor: true)
+            
             Text("Create")
                 .font(.system(size: 15, weight: .semibold))
                 .foregroundColor(.white)
         }
-        .padding(.vertical, 11)
-        .padding(.horizontal, 20)
+        .padding(.vertical, 12)
+        .padding(.horizontal, 16)
         .background(
             RoundedRectangle(cornerRadius: 24, style: .continuous)
                 .fill(Color(white: 0.14))

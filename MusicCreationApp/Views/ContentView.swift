@@ -11,6 +11,7 @@ import UIKit
 struct ContentView: View {
     @State private var selectedTab = 0
     @StateObject private var playerManager = PlayerManager()
+    @StateObject private var tracksStore = TracksStore()
     @State private var tabBarHeight: CGFloat = 0 // to calculate height of tabbar and propagate above
     @State var floatingDragOffset: CGFloat = 0
     
@@ -60,23 +61,12 @@ struct ContentView: View {
     @ViewBuilder
     private var tabContent: some View {
         switch selectedTab {
-        case 0: MusicCreationView(floatingDragOffset: $floatingDragOffset, tabBarHeight: tabBarHeight)
+        case 0: MusicCreationView(floatingDragOffset: $floatingDragOffset, tabBarHeight: tabBarHeight, store: tracksStore)
         case 1:  OtherTabsView(screenType: .search)
         case 2:  OtherTabsView(screenType: .library)
         case 3:  OtherTabsView(screenType: .profile)
-        default: MusicCreationView(floatingDragOffset: $floatingDragOffset, tabBarHeight: tabBarHeight)
+        default: MusicCreationView(floatingDragOffset: $floatingDragOffset, tabBarHeight: tabBarHeight, store: tracksStore)
         }
-    }
-}
-
-
-/// Preference key that propagates the measured height of `CustomTabBar`
-/// up the view tree so `ContentView` can offset `FloatingPlayerView` correctly.
-struct TabBarHeightKey: PreferenceKey {
-    static let defaultValue: CGFloat = 0
-
-    static func reduce(value: inout CGFloat, nextValue: () -> CGFloat) {
-        value = max(value, nextValue())
     }
 }
 

@@ -46,7 +46,7 @@ struct GeneratedTrackItemView: View {
     private var thumbnailColumn: some View {
         ZStack(alignment: .bottomTrailing) {
             RoundedRectangle(cornerRadius: 4, style: .continuous)
-                .fill(track.gradient)
+//                .fill(track.gradient)
                 .frame(width: 64, height: 64)
 
             // Water fill
@@ -123,7 +123,7 @@ struct GeneratedTrackItemView: View {
     @ViewBuilder
     private var subtitleRow: some View {
         if showSubtitle {
-            Text(track.tagline)
+            Text(track.subtitle)
                 .font(.subheadline)
                 .opacity(0.7)
                 .lineLimit(1)

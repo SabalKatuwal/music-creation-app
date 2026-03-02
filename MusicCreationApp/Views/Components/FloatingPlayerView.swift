@@ -46,7 +46,7 @@ struct FloatingPlayerView: View {
             progressBar(for: track)
         }
         .padding(.bottom, 14)
-        .background(LiquidGlassBackground(accentColor: track.accentColor))
+        .background(LiquidGlassBackground())
         .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
         .overlay(glassStroke(dismissProgress: dismissProgress))
         .shadow(color: .black.opacity(0.45 - dismissProgress * 0.3), radius: 30, y: 10)
@@ -139,16 +139,17 @@ struct FloatingPlayerView: View {
                     .fill(Color.white.opacity(0.12))
                     .frame(height: 3)
 
-                Capsule()
-                    .fill(
-                        LinearGradient(
-                            colors: [track.accentColor, track.accentColor.opacity(0.6)],
-                            startPoint: .leading,
-                            endPoint: .trailing
-                        )
-                    )
-                    .frame(width: geo.size.width * playerManager.progress, height: 3)
-                    .animation(.linear(duration: 0.1), value: playerManager.progress)
+                // TODO: In future if we want to make it move to show music progress
+//                Capsule()
+//                    .fill(
+//                        LinearGradient(
+//                            colors: [track.accentColor, track.accentColor.opacity(0.6)],
+//                            startPoint: .leading,
+//                            endPoint: .trailing
+//                        )
+//                    )
+//                    .frame(width: geo.size.width * playerManager.progress, height: 3)
+//                    .animation(.linear(duration: 0.1), value: playerManager.progress)
             }
         }
         .frame(height: 3)
@@ -186,12 +187,11 @@ struct FloatingPlayerView: View {
                 let shouldDismiss = dragOffset > dismissThreshold || velocity > 300
 
                 if shouldDismiss {
-                    // Animate the view sliding fully off-screen first…
+                    // Animate the view sliding fully off-screen first
                     withAnimation(.spring(response: 0.38, dampingFraction: 0.88)) {
                         dragOffset = 500
                     }
-                    // …then silently remove it from the hierarchy without re-triggering
-                    // the .transition removal, which would cause a double-dismiss artifact.
+                    // then silently remove it from the hierarchy without re-triggering the .transition removal, which would cause a double-dismiss artifact.
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.32) {
                         dragOffset = 0
                         playerManager.dismissWithoutAnimation()
