@@ -22,7 +22,8 @@ struct GeneratedTrackItemView: View {
         .frame(maxWidth: .infinity, alignment: .leading)
         .overlay(alignment: .trailing) { moreButton }
         .opacity(enteredView ? 1 : 0)
-        .offset(y: enteredView ? 0 : -14)
+        .offset(y: enteredView ? 0 : -14)        // BUG #1 FIX: Force view re-render when completion status changes to immediately show gradient and thumbnail
+        .id(isCompleted)
         .onAppear {
             withAnimation(.spring(response: 0.55, dampingFraction: 0.78)) {
                 enteredView = true
@@ -45,11 +46,21 @@ struct GeneratedTrackItemView: View {
 
     private var thumbnailColumn: some View {
         ZStack(alignment: .bottomTrailing) {
-            RoundedRectangle(cornerRadius: 16, style: .continuous)
-                .fill(AppColors.brandDiagonal)
-                .frame(width: 64, height: 64)
+            if isCompleted {
+                Image(track.imageName)
+                    .resizable()
+                    .scaledToFill()
+                    .frame(width: 64, height: 64)
+                    .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
+                    .transition(.opacity)
+            } else {
+                // During generation
+                RoundedRectangle(cornerRadius: 16, style: .continuous)
+                    .fill(AppColors.brandDiagonal)
+                    .frame(width: 64, height: 64)
+            }
 
-            // Water fill
+            // Water fill - only during generation
             if !isCompleted {
                 WaterFillOverlay(progress: progress)
                     .frame(width: 64, height: 64)
@@ -57,7 +68,7 @@ struct GeneratedTrackItemView: View {
                     .transition(.opacity)
             }
 
-            // Percentage text
+            // Percentage text - only during generation
             if !isCompleted {
                 Text("\(Int(progress * 100))%")
                     .font(AppText.numericSmall())
@@ -67,7 +78,7 @@ struct GeneratedTrackItemView: View {
                     .contentTransition(.numericText(countsDown: false))
             }
 
-            // Duration badge
+            // Duration badge - only when completed
             if isCompleted {
                 Text(formattedDuration(track.duration))
                     .font(.caption2)
@@ -108,7 +119,7 @@ struct GeneratedTrackItemView: View {
 
     @ViewBuilder
     private var titleRow: some View {
-        if showTitle {
+        if showTitle || isCompleted {
             Text(track.title)
                 .transition(.asymmetric(
                     insertion: .offset(y: 6).combined(with: .opacity),
@@ -122,7 +133,7 @@ struct GeneratedTrackItemView: View {
 
     @ViewBuilder
     private var subtitleRow: some View {
-        if showSubtitle {
+        if showSubtitle || isCompleted {
             Text(track.subtitle)
                 .font(.subheadline)
                 .opacity(0.7)

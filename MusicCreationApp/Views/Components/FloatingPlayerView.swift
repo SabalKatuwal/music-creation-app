@@ -191,9 +191,14 @@ struct FloatingPlayerView: View {
                     withAnimation(.spring(response: 0.38, dampingFraction: 0.88)) {
                         dragOffset = 500
                     }
-                    // then silently remove it from the hierarchy without re-triggering the .transition removal, which would cause a double-dismiss artifact.
+                    // Just dismiss the player; the view is removed from hierarchy so offset doesn't matter fixed double removing issue
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.32) {
-                        dragOffset = 0
+                        // Use transaction to disable animations for the dismiss
+                        var transaction = Transaction()
+                        transaction.disablesAnimations = true
+                        withTransaction(transaction) {
+                            dragOffset = 0
+                        }
                         playerManager.dismissWithoutAnimation()
                     }
                 } else {

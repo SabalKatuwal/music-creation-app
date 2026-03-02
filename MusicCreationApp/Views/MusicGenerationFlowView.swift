@@ -91,6 +91,7 @@ struct MusicGenerationFlowView: View {
         }
         .padding(.vertical, 12)
         .padding(.horizontal, 16)
+        .frame(width: 106)
         .background(
             RoundedRectangle(cornerRadius: 24, style: .continuous)
                 .fill(AppColors.pillBackground)
@@ -254,6 +255,17 @@ struct PromptInputView: View {
                     }
 
                 Spacer(minLength: 8)
+                
+                Button(action: {
+                    isFocused = false
+                }) {
+                    Image(systemName: "xmark")
+                        .font(.system(size: 13, weight: .bold))
+                        .foregroundStyle(.white.opacity(0.5))
+                        .frame(width: 32, height: 32)
+                }
+                .padding(.trailing, 8)
+                
                 sendButton.padding(.trailing, 14)
             }
         }

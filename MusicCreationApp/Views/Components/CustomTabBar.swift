@@ -49,6 +49,7 @@ struct CustomTabBar: View {
             .frame(height: 60)
         }
         .background(AppColors.black)
+        .ignoresSafeArea(.keyboard, edges: .bottom)
     }
     
     

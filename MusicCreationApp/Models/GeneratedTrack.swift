@@ -14,6 +14,7 @@ struct GeneratedTrack: Identifiable, Equatable {
     let title: String
     let subtitle: String
     let duration: TimeInterval
+    let imageName: String
 
     static func fromPrompt(_ prompt: String) -> GeneratedTrack {
 
@@ -43,11 +44,16 @@ struct GeneratedTrack: Identifiable, Equatable {
         let subtitle = subtitleWords.isEmpty
             ? "AI Generated Content"
             : subtitleWords.map { $0.capitalized }.joined(separator: " ")
+        
+        // Assign random image at generation time
+        let images = ["VoicePic", "VoicePic1", "VoicePic2", "VoicePic3"]
+        let imageName = images.randomElement() ?? "VoicePic"
 
         return GeneratedTrack(
             title: title,
             subtitle: subtitle,
-            duration: Double.random(in: 120...240)
+            duration: Double.random(in: 120...240),
+            imageName: imageName
         )
     }
 }

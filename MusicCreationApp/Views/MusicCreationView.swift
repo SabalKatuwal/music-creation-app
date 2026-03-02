@@ -33,7 +33,7 @@ struct MusicCreationView: View {
     var body: some View {
         ZStack(alignment: .bottom) {
             ScrollView {
-                VStack(alignment: .leading, spacing: 0) {
+                VStack(alignment: .leading, spacing: 12) {
 
                     ForEach(Array(viewModel.listItems.enumerated()), id: \.element.id) { index, item in
                         switch item {
@@ -99,7 +99,6 @@ struct MusicCreationView: View {
                 )
             }
             .frame(maxWidth: .infinity)
-            .ignoresSafeArea(.keyboard, edges: .bottom)
 
             MusicGenerationFlowView(
                 generationManager: viewModel.generationManager,
