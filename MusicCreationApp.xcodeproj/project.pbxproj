@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0DF8032D2F54654A0000CF28 /* MusicGenerationFlowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DF8032C2F54654A0000CF28 /* MusicGenerationFlowView.swift */; };
+		0DF8032F2F5466A70000CF28 /* GeneratedTrackItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DF8032E2F5466A70000CF28 /* GeneratedTrackItemView.swift */; };
+		0DF803312F553B1F0000CF28 /* GenerationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DF803302F553B1F0000CF28 /* GenerationManager.swift */; };
 		A6415DC22F4F148A00F59A62 /* MusicCreationAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6415DC12F4F148A00F59A62 /* MusicCreationAppApp.swift */; };
 		A6415DC42F4F148A00F59A62 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6415DC32F4F148A00F59A62 /* ContentView.swift */; };
 		A6415DC62F4F148C00F59A62 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A6415DC52F4F148C00F59A62 /* Assets.xcassets */; };
@@ -24,6 +27,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0DF8032C2F54654A0000CF28 /* MusicGenerationFlowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicGenerationFlowView.swift; sourceTree = "<group>"; };
+		0DF8032E2F5466A70000CF28 /* GeneratedTrackItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneratedTrackItemView.swift; sourceTree = "<group>"; };
+		0DF803302F553B1F0000CF28 /* GenerationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenerationManager.swift; sourceTree = "<group>"; };
 		A6415DBE2F4F148A00F59A62 /* MusicCreationApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MusicCreationApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A6415DC12F4F148A00F59A62 /* MusicCreationAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicCreationAppApp.swift; sourceTree = "<group>"; };
 		A6415DC32F4F148A00F59A62 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -97,6 +103,8 @@
 				A6415DC32F4F148A00F59A62 /* ContentView.swift */,
 				A6415DD12F4F1DC700F59A62 /* OtherTabsView.swift */,
 				A6415DCF2F4F1D8A00F59A62 /* MusicCreationView.swift */,
+				0DF8032C2F54654A0000CF28 /* MusicGenerationFlowView.swift */,
+				0DF8032E2F5466A70000CF28 /* GeneratedTrackItemView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -118,6 +126,7 @@
 			isa = PBXGroup;
 			children = (
 				A6415DE12F50B1EE00F59A62 /* PlayerManager.swift */,
+				0DF803302F553B1F0000CF28 /* GenerationManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -211,8 +220,11 @@
 				A6415DDF2F4F502C00F59A62 /* MusicItemView.swift in Sources */,
 				A6415DD22F4F1DC700F59A62 /* OtherTabsView.swift in Sources */,
 				A6415DD92F4F220F00F59A62 /* CustomCreationShape.swift in Sources */,
+				0DF8032D2F54654A0000CF28 /* MusicGenerationFlowView.swift in Sources */,
+				0DF8032F2F5466A70000CF28 /* GeneratedTrackItemView.swift in Sources */,
 				A6415DE92F50BF8300F59A62 /* LiquidGlassBackground.swift in Sources */,
 				A6415DC42F4F148A00F59A62 /* ContentView.swift in Sources */,
+				0DF803312F553B1F0000CF28 /* GenerationManager.swift in Sources */,
 				A6415DE52F50B37300F59A62 /* MusicTrack.swift in Sources */,
 				A6415DE22F50B1EE00F59A62 /* PlayerManager.swift in Sources */,
 				A6415DE72F50BF1C00F59A62 /* FloatingPlayerView.swift in Sources */,
@@ -352,7 +364,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"MusicCreationApp/Preview Content\"";
-				DEVELOPMENT_TEAM = PSX93NF7U3;
+				DEVELOPMENT_TEAM = X23BK5LCB5;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -381,7 +393,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"MusicCreationApp/Preview Content\"";
-				DEVELOPMENT_TEAM = PSX93NF7U3;
+				DEVELOPMENT_TEAM = X23BK5LCB5;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
