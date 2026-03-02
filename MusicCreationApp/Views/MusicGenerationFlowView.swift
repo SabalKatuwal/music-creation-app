@@ -86,21 +86,21 @@ struct MusicGenerationFlowView: View {
             TwoCreationIconView(selectedTab: .constant(10), withColor: true)
             
             Text("Create")
-                .font(.system(size: 15, weight: .semibold))
-                .foregroundColor(.white)
+                .font(AppText.button())
+                .foregroundStyle(AppText.primary)
         }
         .padding(.vertical, 12)
         .padding(.horizontal, 16)
         .background(
             RoundedRectangle(cornerRadius: 24, style: .continuous)
-                .fill(Color(white: 0.14))
+                .fill(AppColors.pillBackground)
                 .overlay(
                     RoundedRectangle(cornerRadius: 24, style: .continuous)
-                        .stroke(Color.white.opacity(0.08), lineWidth: 1)
+                        .stroke(AppColors.subtleStroke, lineWidth: 1)
                 )
         )
         .matchedGeometryEffect(id: "pillMorph", in: morphNamespace)
-        .shadow(color: .black.opacity(0.35), radius: 12, y: 6)
+        .shadow(color: AppColors.black.opacity(0.35), radius: 12, y: 6)
         .onTapGesture {
             withAnimation(.spring(response: 0.40, dampingFraction: 0.80)) {
                 uiState = .prompt
@@ -113,13 +113,13 @@ struct MusicGenerationFlowView: View {
     private var generatingPill: some View {
         HStack(spacing: 10) {
             // Mini waveform bars
-            MiniWaveformView(color: Color(red: 0.15, green: 0.88, blue: 0.48))
+            MiniWaveformView(color: AppColors.accentGreen)
                 .frame(width: 22, height: 16)
 
             // Stage text with smooth cross-fade
             Text(generationManager.stage.message + "…")
-                .font(.system(size: 14, weight: .medium))
-                .foregroundColor(.white.opacity(0.80))
+                .font(AppText.stage())
+                .foregroundStyle(AppColors.textPrimary.opacity(0.80))
                 .contentTransition(.interpolate)
                 .animation(.easeInOut(duration: 0.40), value: generationManager.stage)
 
@@ -127,8 +127,8 @@ struct MusicGenerationFlowView: View {
 
             // Progress percentage
             Text("\(Int(generationManager.progress * 100))%")
-                .font(.system(size: 13, weight: .semibold, design: .rounded))
-                .foregroundColor(Color(red: 0.15, green: 0.88, blue: 0.48))
+                .font(AppText.numericMedium())
+                .foregroundStyle(AppColors.accentGreen)
                 .contentTransition(.numericText(countsDown: false))
                 .animation(.linear(duration: 0.05), value: generationManager.progress)
         }
@@ -137,22 +137,13 @@ struct MusicGenerationFlowView: View {
         .frame(minWidth: 220)
         .background(
             RoundedRectangle(cornerRadius: 24, style: .continuous)
-                .fill(Color(white: 0.11))
+                .fill(AppColors.pillBackgroundDark)
                 .overlay(
                     RoundedRectangle(cornerRadius: 24, style: .continuous)
-                        .stroke(
-                            LinearGradient(
-                                colors: [
-                                    Color(red: 0.15, green: 0.88, blue: 0.48).opacity(0.45),
-                                    Color(red: 0.15, green: 0.88, blue: 0.48).opacity(0.10)
-                                ],
-                                startPoint: .topLeading, endPoint: .bottomTrailing
-                            ),
-                            lineWidth: 1
-                        )
+                        .stroke(AppColors.greenStroke, lineWidth: 1)
                 )
         )
-        .shadow(color: Color(red: 0.10, green: 0.75, blue: 0.42).opacity(0.30), radius: 16, y: 6)
+        .shadow(color: AppColors.accentGreenShadow.opacity(0.30), radius: 16, y: 6)
     }
 }
 
@@ -203,12 +194,7 @@ struct PromptInputView: View {
     var body: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 28, style: .continuous)
-                .fill(
-                    LinearGradient(
-                        colors: [Color(red:0.52,green:0.22,blue:1.0), Color(red:1.0,green:0.22,blue:0.58)],
-                        startPoint: .topLeading, endPoint: .bottomTrailing
-                    )
-                )
+                .fill(AppColors.brandDiagonal)
                 .blur(radius: isFocused ? 30 : 12)
                 .opacity(isFocused ? (glowPulse ? 0.60 : 0.42) : 0.16)
                 .scaleEffect(isFocused ? (glowPulse ? 1.10 : 1.03) : 1.0)
@@ -228,14 +214,14 @@ struct PromptInputView: View {
                     .stroke(
                         AngularGradient(
                             stops: [
-                                .init(color: .clear,                                         location: 0.00),
-                                .init(color: Color(red:0.58,green:0.20,blue:1.0).opacity(0.45), location: 0.08),
-                                .init(color: Color(red:0.95,green:0.28,blue:0.68).opacity(0.80), location: 0.24),
-                                .init(color: .white,                                         location: 0.35),
-                                .init(color: Color(red:0.95,green:0.28,blue:0.68).opacity(0.70), location: 0.46),
-                                .init(color: Color(red:0.48,green:0.18,blue:1.0).opacity(0.28), location: 0.64),
-                                .init(color: .clear,                                         location: 0.80),
-                                .init(color: .clear,                                         location: 1.00),
+                                .init(color: .clear,                            location: 0.00),
+                                .init(color: AppColors.brandPurpleDeep.opacity(0.45), location: 0.08),
+                                .init(color: AppColors.brandPink.opacity(0.80),       location: 0.24),
+                                .init(color: .white,                            location: 0.35),
+                                .init(color: AppColors.brandPink.opacity(0.70),       location: 0.46),
+                                .init(color: AppColors.brandPurpleDeep.opacity(0.28), location: 0.64),
+                                .init(color: .clear,                            location: 0.80),
+                                .init(color: .clear,                            location: 1.00),
                             ],
                             center: .center,
                             startAngle: .degrees(deg),
@@ -248,12 +234,9 @@ struct PromptInputView: View {
 
             // Specular highlight at top edge
             if isFocused {
-                LinearGradient(
-                    colors: [Color.white.opacity(0.07), .clear],
-                    startPoint: .top, endPoint: UnitPoint(x: 0.5, y: 0.45)
-                )
-                .clipShape(RoundedRectangle(cornerRadius: 28, style: .continuous))
-                .transition(.opacity)
+                AppColors.topSpecular
+                    .clipShape(RoundedRectangle(cornerRadius: 28, style: .continuous))
+                    .transition(.opacity)
             }
 
             // Input row
@@ -261,8 +244,8 @@ struct PromptInputView: View {
                 TextField("Describe your music…", text: $text, axis: .vertical)
                     .focused($isFocused)
                     .font(.system(size: 16, weight: .regular))
-                    .foregroundColor(.white)
-                    .tint(Color(red: 0.72, green: 0.42, blue: 1.0))
+                    .foregroundStyle(.white)
+                    .tint(AppColors.brandPurple)
                     .lineLimit(1...4)
                     .padding(.vertical, 16)
                     .padding(.leading, 20)
@@ -278,7 +261,7 @@ struct PromptInputView: View {
         .padding(.horizontal, 16)
         .matchedGeometryEffect(id: "pillMorph", in: morphNamespace)
         .shadow(
-            color: Color(red:0.52,green:0.22,blue:1.0).opacity(isFocused ? 0.28 : 0.0),
+            color: AppColors.brandPurple.opacity(isFocused ? 0.28 : 0.0),
             radius: 22, y: 8
         )
         .animation(.easeInOut(duration: 0.38), value: isFocused)
@@ -306,19 +289,17 @@ struct PromptInputView: View {
                 Circle()
                     .fill(
                         canSubmit
-                            ? AnyShapeStyle(LinearGradient(
-                                colors: [Color(red:0.52,green:0.22,blue:1.0), Color(red:1.0,green:0.28,blue:0.62)],
-                                startPoint: .topLeading, endPoint: .bottomTrailing))
+                            ? AnyShapeStyle(AppColors.brandDiagonalBright)
                             : AnyShapeStyle(Color.white.opacity(0.10))
                     )
                     .frame(width: 38, height: 38)
                     .shadow(
-                        color: canSubmit ? Color(red:0.62,green:0.26,blue:1.0).opacity(0.52) : .clear,
+                        color: canSubmit ? AppColors.brandPurple.opacity(0.52) : .clear,
                         radius: 10, y: 4
                     )
                 Image(systemName: "arrow.up")
                     .font(.system(size: 13, weight: .bold))
-                    .foregroundColor(canSubmit ? .white : Color.white.opacity(0.28))
+                    .foregroundStyle(canSubmit ? .white : AppColors.textMuted)
             }
         }
         .buttonStyle(SpringButtonStyle())

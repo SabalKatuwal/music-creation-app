@@ -17,7 +17,7 @@ struct MusicItemView: View {
     var body: some View {
         Button(action: onTap) {
             HStack(alignment: .center, spacing: 0) {
-    
+
                 thumbnail
                 info
             }
@@ -42,7 +42,7 @@ struct MusicItemView: View {
                 .clipShape(RoundedRectangle(cornerRadius: 4))
             
             Text(track.duration)
-                .font(.caption2)
+                .font(AppText.smallLabel())
                 .padding(.horizontal, 4)
                 .padding(.vertical, 2)
                 .background {
@@ -56,14 +56,17 @@ struct MusicItemView: View {
     private var info: some View {
         VStack(alignment: .leading, spacing: 5) {
             Text(track.title)
+                .font(AppText.title())
+                .lineLimit(1)
+                .foregroundStyle(AppText.primary)
 
             Text(track.subtitle)
-                .font(.subheadline)
-                .opacity(0.7)
+                .font(AppText.subtitle())
+                .foregroundStyle(AppText.secondary)
                 .lineLimit(1)
                 .overlay(
                     LinearGradient(
-                        gradient: Gradient(colors: [Color.black.opacity(0), Color.black]),
+                        gradient: Gradient(colors: [AppColors.black.opacity(0), AppColors.black]),
                         startPoint: .leading,
                         endPoint: .trailing
                     )
@@ -81,7 +84,7 @@ struct MusicItemView: View {
             Spacer()
             Image(systemName: "ellipsis")
                 .font(.headline)
-                .opacity(0.7)
+                .foregroundStyle(AppText.secondary)
         }
     }
 }
@@ -89,3 +92,4 @@ struct MusicItemView: View {
 //#Preview {
 //    MusicItemView(track: MusicTrack(imageName: "", title: "", subtitle: "", duration: "", accentColor: "", gradient: ""), onTap: {})
 //}
+

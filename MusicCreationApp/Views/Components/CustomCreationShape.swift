@@ -21,6 +21,7 @@ struct TwoCreationIconView: View {
                     .frame(width: 12, height: 12)
                     .offset(x: -10, y: 10)
             }
+            .offset(y: -3) // just to balance the offset i.e. to make it center
         }
     }
 }

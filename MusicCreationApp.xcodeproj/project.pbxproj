@@ -14,6 +14,8 @@
 		0DF803352F5547240000CF28 /* MusicCreationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DF803342F5547240000CF28 /* MusicCreationViewModel.swift */; };
 		0DF803382F55B8AD0000CF28 /* GeneratedTrack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DF803372F55B8AC0000CF28 /* GeneratedTrack.swift */; };
 		0DF8033A2F55BB620000CF28 /* TabBarHeightKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DF803392F55BB620000CF28 /* TabBarHeightKey.swift */; };
+		0DF8033D2F55C4940000CF28 /* AppColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DF8033C2F55C4940000CF28 /* AppColors.swift */; };
+		0DF8033F2F55C49C0000CF28 /* AppText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DF8033E2F55C49C0000CF28 /* AppText.swift */; };
 		A6415DC22F4F148A00F59A62 /* MusicCreationAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6415DC12F4F148A00F59A62 /* MusicCreationAppApp.swift */; };
 		A6415DC42F4F148A00F59A62 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6415DC32F4F148A00F59A62 /* ContentView.swift */; };
 		A6415DC62F4F148C00F59A62 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A6415DC52F4F148C00F59A62 /* Assets.xcassets */; };
@@ -38,6 +40,8 @@
 		0DF803342F5547240000CF28 /* MusicCreationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicCreationViewModel.swift; sourceTree = "<group>"; };
 		0DF803372F55B8AC0000CF28 /* GeneratedTrack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneratedTrack.swift; sourceTree = "<group>"; };
 		0DF803392F55BB620000CF28 /* TabBarHeightKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarHeightKey.swift; sourceTree = "<group>"; };
+		0DF8033C2F55C4940000CF28 /* AppColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppColors.swift; sourceTree = "<group>"; };
+		0DF8033E2F55C49C0000CF28 /* AppText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppText.swift; sourceTree = "<group>"; };
 		A6415DBE2F4F148A00F59A62 /* MusicCreationApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MusicCreationApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A6415DC12F4F148A00F59A62 /* MusicCreationAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicCreationAppApp.swift; sourceTree = "<group>"; };
 		A6415DC32F4F148A00F59A62 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -71,6 +75,8 @@
 			children = (
 				0DF803392F55BB620000CF28 /* TabBarHeightKey.swift */,
 				A6415DE82F50BF8300F59A62 /* LiquidGlassBackground.swift */,
+				0DF8033C2F55C4940000CF28 /* AppColors.swift */,
+				0DF8033E2F55C49C0000CF28 /* AppText.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -249,6 +255,7 @@
 				0DF803332F5547180000CF28 /* TracksStore.swift in Sources */,
 				A6415DDF2F4F502C00F59A62 /* MusicItemView.swift in Sources */,
 				A6415DD22F4F1DC700F59A62 /* OtherTabsView.swift in Sources */,
+				0DF8033F2F55C49C0000CF28 /* AppText.swift in Sources */,
 				A6415DD92F4F220F00F59A62 /* CustomCreationShape.swift in Sources */,
 				0DF8032D2F54654A0000CF28 /* MusicGenerationFlowView.swift in Sources */,
 				0DF8032F2F5466A70000CF28 /* GeneratedTrackItemView.swift in Sources */,
@@ -257,6 +264,7 @@
 				0DF803312F553B1F0000CF28 /* GenerationManager.swift in Sources */,
 				0DF803382F55B8AD0000CF28 /* GeneratedTrack.swift in Sources */,
 				A6415DE52F50B37300F59A62 /* MusicTrack.swift in Sources */,
+				0DF8033D2F55C4940000CF28 /* AppColors.swift in Sources */,
 				A6415DE22F50B1EE00F59A62 /* PlayerManager.swift in Sources */,
 				A6415DE72F50BF1C00F59A62 /* FloatingPlayerView.swift in Sources */,
 				A6415DDB2F4F22F100F59A62 /* CustomTabBar.swift in Sources */,

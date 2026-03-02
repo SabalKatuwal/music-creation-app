@@ -49,7 +49,7 @@ struct FloatingPlayerView: View {
         .background(LiquidGlassBackground())
         .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
         .overlay(glassStroke(dismissProgress: dismissProgress))
-        .shadow(color: .black.opacity(0.45 - dismissProgress * 0.3), radius: 30, y: 10)
+        .shadow(color: AppColors.black.opacity(0.45 - dismissProgress * 0.3), radius: 30, y: 10)
         .padding(.horizontal, 16)
         .offset(y: dragOffset)
         .opacity(1.0 - dismissProgress * 0.3)
@@ -61,7 +61,7 @@ struct FloatingPlayerView: View {
 
     private var dragHandle: some View {
         Capsule()
-            .fill(Color.white.opacity(0.3 - dismissProgress * 0.3))
+            .fill(AppColors.textPrimary.opacity(0.3 - dismissProgress * 0.3))
             .frame(width: 36, height: 4)
             .padding(.top, 10)
             .padding(.bottom, 12)
@@ -100,7 +100,7 @@ struct FloatingPlayerView: View {
         VStack(alignment: .leading) {
             Text(track.title)
                 .font(.headline)
-                .foregroundColor(.white.opacity(1.0 - dismissProgress * 0.2))
+                .foregroundStyle(AppColors.textPrimary.opacity(1.0 - dismissProgress * 0.2))
                 .lineLimit(1)
         }
     }
@@ -111,14 +111,14 @@ struct FloatingPlayerView: View {
             Button(action: playerManager.skipBackward) {
                 Image(systemName: "backward.fill")
                     .font(.headline)
-                    .foregroundColor(.white.opacity(0.8 - dismissProgress * 0.2))
+                    .foregroundStyle(AppColors.textPrimary.opacity(0.8 - dismissProgress * 0.2))
             }
 
             Button(action: { playerManager.isPlaying.toggle() }) {
                 ZStack {
                     Image(systemName: playerManager.isPlaying ? "pause.fill" : "play.fill")
                         .font(.headline)
-                        .foregroundColor(.white.opacity(0.8 - dismissProgress * 0.2))
+                        .foregroundStyle(AppColors.textPrimary.opacity(0.8 - dismissProgress * 0.2))
                         .offset(x: playerManager.isPlaying ? 0 : 1)
                 }
             }
@@ -126,7 +126,7 @@ struct FloatingPlayerView: View {
             Button(action: playerManager.skipForward) {
                 Image(systemName: "forward.fill")
                     .font(.system(size: 18))
-                    .foregroundColor(.white.opacity(0.8 - dismissProgress * 0.2))
+                    .foregroundStyle(AppColors.textPrimary.opacity(0.8 - dismissProgress * 0.2))
             }
         }
     }
@@ -136,7 +136,7 @@ struct FloatingPlayerView: View {
         GeometryReader { geo in
             ZStack(alignment: .leading) {
                 Capsule()
-                    .fill(Color.white.opacity(0.12))
+                    .fill(AppColors.progressTrack)
                     .frame(height: 3)
 
                 // TODO: In future if we want to make it move to show music progress
@@ -162,8 +162,8 @@ struct FloatingPlayerView: View {
             .stroke(
                 LinearGradient(
                     colors: [
-                        Color.white.opacity(0.25 - dismissProgress * 0.2),
-                        Color.white.opacity(0.05)
+                        AppColors.glassStrokePrimary,
+                        AppColors.glassStrokeSecondary
                     ],
                     startPoint: .topLeading,
                     endPoint: .bottomTrailing

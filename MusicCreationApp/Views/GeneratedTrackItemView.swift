@@ -60,8 +60,8 @@ struct GeneratedTrackItemView: View {
             // Percentage text
             if !isCompleted {
                 Text("\(Int(progress * 100))%")
-                    .font(.system(size: 13, weight: .bold, design: .rounded))
-                    .foregroundColor(.white)
+                    .font(AppText.numericSmall())
+                    .foregroundStyle(AppText.primary)
                     .shadow(color: .black.opacity(0.5), radius: 3)
                     .frame(width: 64, height: 64)
                     .contentTransition(.numericText(countsDown: false))
@@ -71,7 +71,7 @@ struct GeneratedTrackItemView: View {
             if isCompleted {
                 Text(formattedDuration(track.duration))
                     .font(.caption2)
-                    .foregroundColor(.white)
+                    .foregroundStyle(AppText.primary)
                     .padding(.horizontal, 4)
                     .padding(.vertical, 2)
                     .background {
@@ -85,7 +85,7 @@ struct GeneratedTrackItemView: View {
         .overlay(alignment: .topLeading) {
             if showDot {
                 Circle()
-                    .fill(Color(red: 0.15, green: 0.88, blue: 0.48))
+                    .fill(AppColors.accentGreen)
                     .frame(width: 9, height: 9)
                     .overlay(Circle().stroke(Color.black.opacity(0.35), lineWidth: 1.5))
                     .padding(5)
@@ -137,8 +137,8 @@ struct GeneratedTrackItemView: View {
                     GeneratingDotsView()
                 }
                 Text(isCompleted ? "" : stage.message)
-                    .font(.subheadline)
-                    .opacity(0.48)
+                    .font(AppText.subtitle())
+                    .foregroundStyle(AppText.tertiary)
                     .contentTransition(.interpolate)
                     .animation(.easeInOut(duration: 0.35), value: stage.message)
             }
@@ -228,17 +228,13 @@ struct ShimmerBar: View {
 
     var body: some View {
         RoundedRectangle(cornerRadius: height / 2, style: .continuous)
-            .fill(Color.white.opacity(0.08))
+            .fill(AppColors.subtleStroke)
             .frame(width: width, height: height)
             .overlay(
                 GeometryReader { geo in
-                    LinearGradient(
-                        colors: [.clear, Color.white.opacity(0.20), .clear],
-                        startPoint: .leading,
-                        endPoint: .trailing
-                    )
-                    .frame(width: geo.size.width * 0.55)
-                    .offset(x: phase * (geo.size.width + geo.size.width * 0.55))
+                    AppColors.shimmerHighlight
+                        .frame(width: geo.size.width * 0.55)
+                        .offset(x: phase * (geo.size.width + geo.size.width * 0.55))
                 }
                 .clipShape(RoundedRectangle(cornerRadius: height / 2, style: .continuous))
             )
@@ -262,7 +258,7 @@ struct GeneratingDotsView: View {
         HStack(spacing: 3) {
             ForEach(0..<3) { i in
                 Circle()
-                    .fill(Color(red: 0.15, green: 0.88, blue: 0.48))
+                    .fill(AppColors.accentGreen)
                     .frame(width: 4, height: 4)
                     .scaleEffect(phase == i ? 1.35 : 0.75)
                     .opacity(phase == i ? 1.0 : 0.38)
