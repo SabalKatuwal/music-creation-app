@@ -16,7 +16,7 @@ struct CustomTabBar: View {
         VStack(spacing: 4) {
             
             Rectangle()
-                .fill(Color.white.opacity(0.4))
+                .fill(AppColors.divider)
                 .frame(height: 0.5)
             
             HStack {
@@ -48,7 +48,8 @@ struct CustomTabBar: View {
             }
             .frame(height: 60)
         }
-        .background(Color.black)
+        .background(AppColors.black)
+        .ignoresSafeArea(.keyboard, edges: .bottom)
     }
     
     
@@ -62,7 +63,7 @@ struct CustomTabBar: View {
             selectedTab = index
         } label: {
             content()
-                .foregroundColor(selectedTab == index ? .white : .white.opacity(0.4))
+                .foregroundStyle(selectedTab == index ? .white : .white.opacity(0.4))
                 .frame(maxWidth: .infinity)
         }
     }

@@ -18,7 +18,7 @@ final class PlayerManager: ObservableObject {
     @Published var progress: Double = 0.0
 
     func play(_ track: MusicTrack) {
-        if currentTrack == track {
+        if currentTrack == track && isPlayerVisible {
             isPlaying.toggle()
         } else {
             currentTrack = track

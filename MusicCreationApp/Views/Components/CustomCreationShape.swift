@@ -12,13 +12,16 @@ struct TwoCreationIconView: View {
     @Binding var selectedTab: Int
     var withColor: Bool = false
     var body: some View {
-        ZStack {
-            CustomIconRepresentable(isSelected: selectedTab == 0, withColor: withColor)
-                .frame(width: 18, height: 18)
-            
-            CustomIconRepresentable(isSelected: selectedTab == 0, withColor: withColor)
-                .frame(width: 12, height: 12)
-                .offset(x: -10, y: 10)
+        VStack(alignment: .center) {
+            ZStack {
+                CustomIconRepresentable(isSelected: selectedTab == 0, withColor: withColor)
+                    .frame(width: 18, height: 18)
+                
+                CustomIconRepresentable(isSelected: selectedTab == 0, withColor: withColor)
+                    .frame(width: 12, height: 12)
+                    .offset(x: -10, y: 10)
+            }
+            .offset(y: -3) // just to balance the offset i.e. to make it center
         }
     }
 }

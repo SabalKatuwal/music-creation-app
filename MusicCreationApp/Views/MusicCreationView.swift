@@ -8,53 +8,118 @@
 import SwiftUI
 
 struct MusicCreationView: View {
+
     @Binding var floatingDragOffset: CGFloat
     let tabBarHeight: CGFloat
-    
-    @State private var floatingPlayerHeight: CGFloat = 120
+
     @EnvironmentObject private var playerManager: PlayerManager
 
-    var body: some View {
+    let store: TracksStore
 
-        ScrollView {
-            VStack(alignment: .leading, spacing: 12) {
-                ForEach(MusicTrack.sampleTracks) { track in
-                    MusicItemView(track: track) {
-                        withAnimation(.spring(response: 0.5, dampingFraction: 0.78)) {
-                            playerManager.play(track)
+    @StateObject private var viewModel: MusicCreationViewModel
+
+    private let floatingPlayerHeight: CGFloat = 120
+
+    init(floatingDragOffset: Binding<CGFloat>, tabBarHeight: CGFloat, store: TracksStore) {
+        self._floatingDragOffset = floatingDragOffset
+        self.tabBarHeight = tabBarHeight
+        self.store = store
+        _viewModel = StateObject(wrappedValue: MusicCreationViewModel(
+            generationManager: GenerationManager(),
+            store: store
+        ))
+    }
+
+    var body: some View {
+        ZStack(alignment: .bottom) {
+            ScrollView {
+                VStack(alignment: .leading, spacing: 12) {
+
+                    ForEach(Array(viewModel.listItems.enumerated()), id: \.element.id) { index, item in
+                        switch item {
+                        case .generating(let active, let progress, let stage):
+                            GeneratedTrackItemView(
+                                track: active,
+                                progress: progress,
+                                stage: stage,
+                                isCompleted: false
+                            )
+                            .padding(.horizontal)
+                            .transition(.asymmetric(
+                                insertion: .move(edge: .top).combined(with: .opacity),
+                                removal:   .opacity
+                            ))
+
+                        case .generated(let track):
+                            GeneratedTrackItemView(
+                                track: track,
+                                progress: 1.0,
+                                stage: .finalizing,
+                                isCompleted: true
+                            )
+                            .padding(.horizontal)
+                            .transition(.asymmetric(
+                                insertion: .scale(scale: 0.96).combined(with: .opacity),
+                                removal:   .opacity
+                            ))
+                            .onTapGesture {
+                                // Play the corresponding library item (with same id)
+                                if let lib = store.tracks.first(where: { $0.id == track.id }) {
+                                    withAnimation(.spring(response: 0.5, dampingFraction: 0.78)) {
+                                        playerManager.play(lib)
+                                    }
+                                } else {
+                                    // Fallback: insert then play
+                                    let lib = store.addGenerated(track)
+                                    withAnimation(.spring(response: 0.5, dampingFraction: 0.78)) {
+                                        playerManager.play(lib)
+                                    }
+                                }
+                            }
+
+                        case .library(let track):
+                            MusicItemView(track: track) {
+                                withAnimation(.spring(response: 0.5, dampingFraction: 0.78)) {
+                                    playerManager.play(track)
+                                }
+                            }
+                            .padding(.horizontal)
                         }
                     }
                 }
-            }
-            .padding(.horizontal)
-            // for scrolling till bottom part
-            .padding(.bottom, playerManager.isPlayerVisible ? 120 : 0)
-        }
-        .frame(maxWidth: .infinity)
-        .overlay {
-            VStack {
-                Spacer()
-                
-                HStack(spacing: 4) {
-                    TwoCreationIconView(selectedTab: .constant(1), withColor: true)
-                    Text("Create")
-                        .font(.headline)
-                }
-                .padding(.vertical, 8)
-                .padding(.horizontal, 16)
-                .background(
-                    RoundedRectangle(cornerRadius: 16)
-                        .fill(Color(.systemGray5))
+                .padding(.top, 8)
+                .padding(.bottom, bottomScrollPadding)
+                .animation(
+                    .spring(response: 0.48, dampingFraction: 0.80),
+                    value: viewModel.generationManager.isGenerating
+                )
+                .animation(
+                    .spring(response: 0.48, dampingFraction: 0.80),
+                    value: viewModel.generationManager.completedTracks.count
                 )
             }
-            .padding(.bottom, 12 + (playerManager.isPlayerVisible ? floatingPlayerHeight : 0))
-            .offset(
-                y: min(floatingDragOffset, floatingPlayerHeight)
+            .frame(maxWidth: .infinity)
+
+            MusicGenerationFlowView(
+                generationManager: viewModel.generationManager,
+                floatingDragOffset: $floatingDragOffset,
+                isPlayerVisible: playerManager.isPlayerVisible,
+                floatingPlayerHeight: floatingPlayerHeight
             )
         }
     }
-}
 
-//#Preview {
-//    MusicCreationView(floatingDragOffset: .constant(10), tabBarHeight: 120)
-//}
+    // MARK: - Helpers
+
+    private var rowDivider: some View {
+        Divider()
+            .background(Color.white.opacity(0.06))
+            .padding(.leading, 88)
+    }
+
+    private var bottomScrollPadding: CGFloat {
+        let pillClearance: CGFloat = 72
+        let playerClearance: CGFloat = playerManager.isPlayerVisible ? floatingPlayerHeight + 12 : 0
+        return pillClearance + playerClearance
+    }
+}
