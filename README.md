@@ -2,6 +2,10 @@
 
 A modern iOS music generation app built with SwiftUI. Create custom music by describing it in natural language, manage your music library, and enjoy seamless playback with an elegant floating player interface.
 
+## Demo Video
+[![Watch the video](https://img.youtube.com/vi/VIDEO_ID/0.jpg)](https://www.youtube.com/shorts/7IRbJfiQbkU)
+
+
 ## Tech Stack
 
 - **Language**: Swift 5.7+
