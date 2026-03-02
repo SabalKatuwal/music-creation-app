@@ -45,15 +45,15 @@ struct GeneratedTrackItemView: View {
 
     private var thumbnailColumn: some View {
         ZStack(alignment: .bottomTrailing) {
-            RoundedRectangle(cornerRadius: 4, style: .continuous)
-//                .fill(track.gradient)
+            RoundedRectangle(cornerRadius: 16, style: .continuous)
+                .fill(AppColors.brandDiagonal)
                 .frame(width: 64, height: 64)
 
             // Water fill
             if !isCompleted {
                 WaterFillOverlay(progress: progress)
                     .frame(width: 64, height: 64)
-                    .clipShape(RoundedRectangle(cornerRadius: 4, style: .continuous))
+                    .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
                     .transition(.opacity)
             }
 
